@@ -1,0 +1,95 @@
+body{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 660px;
+    background-color: rgb(20,88,214);
+}
+
+label{
+    padding : 15px 0 0 0;
+    font-size: 20px;
+    color: rgb(20,88,214);
+    font-family: century gothic;
+    font-weight: bold;
+}
+
+div{
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+#container{
+    height: 100%;
+    width: 100%;
+    margin-top : auto;
+    margin-bottom: auto;
+}
+
+form{
+   height: 370px;
+   width: 600px;
+   border-radius: 5px;
+   background-color: white;
+}
+
+.inputField {
+    border-top-style: hidden;
+    border-left-style: hidden;
+    border-right-style: hidden;
+    outline: none;
+    border-radius : 8px;  
+    height: 25px;
+    width: 250px;
+}
+
+.inputContainer{
+    padding : 5px;
+}
+.inputField:focus, .inputField:active{
+    border-color: transparent;
+    border-bottom: 2px solid rgb(20,88,214);
+}
+
+
+h1{
+    font-family: Century Gothic;
+    color: rgb(20,88,214);
+}
+    
+.btn-hero-success{
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: .0625rem;
+    font-weight: 700;
+    padding: .625rem 1.5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background-color: rgb(20, 88, 214);
+    border: none;
+    /*box-shadow: 0 0.125rem 0.75rem rgb(91 127 52);*/
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-transform .12s ease-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,transform .12s ease-out;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,transform .12s ease-out,-webkit-transform .12s ease-out;
+}
+
+.btn {
+    font-family: Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    display: inline-block;
+}
+
+
+#submitButton{
+    width: 270px;
+    height: 45px;
+    border: none;
+    background: rgb(20,88,214);
+    color: #fff;
+    font-size: 22px;
+    border-radius: 40px;
+}
+    

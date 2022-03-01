@@ -1,0 +1,150 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin : 0px;
+}
+
+.navbar {
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgb(20,88,214);
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 20px 50px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: rgb(27,45,207)
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+label{
+  padding : 15px 0 0 0;
+  font-size: 20px;
+  color: rgb(20,88,214);
+  font-family: century gothic;
+  font-weight: bold;
+}
+.divInput{
+  display : flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+#container{
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  align-items: center;
+}
+
+form{
+ height: 350px;
+ width: 600px;
+ border-radius: 5px;
+ background-color: white;
+}
+
+.inputField {
+  border-top-style: hidden;
+  border-left-style: hidden;
+  border-right-style: hidden;
+  outline: none;
+  border-radius : 8px;  
+  height: 25px;
+  width: 250px;
+}
+
+.inputContainer{
+  padding : 5px;
+}
+.inputField:focus, .inputField:active{
+  border-color: transparent;
+  border-bottom: 2px solid rgb(20,88,214);
+}
+
+#submitButton{
+  width: 270px;
+  height: 45px;
+  border: none;
+  background: rgb(20,88,214);
+  color: #fff;
+  font-size: 22px;
+  border-radius: 40px;
+}
+
+.btn-hero-success{
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: .0625rem;
+  font-weight: 700;
+  padding: .625rem 1.5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  background-color: rgb(20, 88, 214);
+  border: none;
+  /*box-shadow: 0 0.125rem 0.75rem rgb(91 127 52);*/
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-transform .12s ease-out;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,transform .12s ease-out;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,transform .12s ease-out,-webkit-transform .12s ease-out;
+}
+
+.btn {
+  font-family: Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  display: inline-block;
+}
+
+.message{
+  text-align: center;
+}

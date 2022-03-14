@@ -1,0 +1,33 @@
+{
+    
+    "student": [
+            [
+                {
+                    "matricule": "TkcdAB",
+                    "nom": "KOUEVIDJIN",
+                    "prenoms": "MIGUEL GILLES KANGNI",
+                    "dateNaissance":"2001-09-19",
+                    "lieu":"MARCORY",
+                    "sexe":"M",
+                    "photo":"xxxxxxxxxx.png",
+                    "codeCl":"M1 BIHAR",
+                    "CV": "XXXXXXXX"
+                    
+                }
+            ],
+            [
+                {
+                "matricule": "1A3BA",
+                "nom": "KOUEVI",
+                "prenoms": "MIGUEL ",
+                "dateNaissance":"2001",
+                "lieu":"MARCORY",
+                "sexe":"M",
+                "photo":"xxxxxxxxxx.png",
+                "codeCl":"M1 SITW",
+                "CV":"vlvlvlv.pdf"
+                }
+            ]
+    ]
+    
+}

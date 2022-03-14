@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BIBLIO.iml" filepath="$PROJECT_DIR$/.idea/BIBLIO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../PHP_AVANCE_FAILLES/.idea/PHP_AVANCE_FAILLES.iml" filepath="$PROJECT_DIR$/../PHP_AVANCE_FAILLES/.idea/PHP_AVANCE_FAILLES.iml" />
     </modules>
   </component>
 </project>

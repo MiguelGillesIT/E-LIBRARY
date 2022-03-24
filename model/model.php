@@ -32,7 +32,7 @@
 
     function retrieveIdClasseByLibelle($libelleCl){
         $dataBase = connectDb();
-        $sqlQuerySelectClass = "SELECT codeCl FROM classe WHERE libelleCl =:libelleCl";
+        $sqlQuerySelectClass = "SELECT codeCl FROM classe WHERE libelleCl = :libelleCl";
         $selectClass = $dataBase->prepare($sqlQuerySelectClass);
         $selectClass->execute([
             'libelleCl' => $libelleCl, 
@@ -250,6 +250,40 @@
         ])or die(print_r($dataBase->errorInfo()));
     }
 
+    function retrieveLend($StudentId,$BookId){
+        $dataBase = connectDb();
+        $sqlQuerySelectLentBook = "SELECT * FROM emprunter WHERE matricule =:matricule AND codeL =:codeL";
+        $selectLentBook = $dataBase->prepare($sqlQuerySelectLentBook);
+        $selectLentBook->execute([
+            "matricule"  => $StudentId,
+            "codeL"  => $BookId,
+        ]);
+        $lentBooks = $selectLentBook->fetchAll();
+        return $lentBooks;
+    }
+
+    function retrieveNotFinishedLend($StudentId,$BookId){
+        $dataBase = connectDb();
+        $sqlQuerySelectLentBook = "SELECT * FROM emprunter WHERE matricule =:matricule AND codeL =:codeL AND dateRetour IS NULL ";
+        $selectLentBook = $dataBase->prepare($sqlQuerySelectLentBook);
+        $selectLentBook->execute([
+            "matricule"  => $StudentId,
+            "codeL"  => $BookId,
+        ]);
+        $lentBooks = $selectLentBook->fetchAll();
+        return $lentBooks;
+    }
+
+
+    function SelectNotFinishedLend(){
+        $dataBase = connectDb();
+        $sqlQuerySelectLentBook = "SELECT * FROM emprunter WHERE dateRetour IS NULL ";
+        $selectLentBook = $dataBase->prepare($sqlQuerySelectLentBook);
+        $selectLentBook->execute();
+        $lentBooks = $selectLentBook->fetchAll();
+        return $lentBooks;
+    }
+
     function selectLentBook(){
         $dataBase = connectDb();
         $sqlQuerySelectLentBook = "SELECT * FROM emprunter";
@@ -295,5 +329,28 @@
     }
         
 
+    function insertIntoBiblioLogs($userID,$userIpAdress,$userAction,$actionDate,$actionTime){
+        $dataBase = connectDb();
+        $sqlQueryInsertClass = "INSERT INTO biblio_logs(user_ID,user_ip_address,user_action,date_action,time_action) VALUES (:user_ID, :user_ip_address, :user_action, :date_action, :time_action)";
+        $insertClass = $dataBase->prepare($sqlQueryInsertClass);
+        $insertClass->execute([
+            'user_ID' => $userID,
+            'user_ip_address' => $userIpAdress,
+            'user_action' => $userAction,
+            'date_action'=> $actionDate,
+            'time_action' => $actionTime,
+        ]) or die(print_r($dataBase->errorInfo()));
+    }
 
-
+    function getUserIpAddr(){
+        if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+            //ip from share internet
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        }elseif(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+            //ip pass from proxy
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+        }else{
+            $ip = $_SERVER['REMOTE_ADDR'];
+        }
+        return $ip;
+    }

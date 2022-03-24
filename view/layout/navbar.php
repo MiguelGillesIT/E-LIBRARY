@@ -18,7 +18,7 @@
     				<div class="dropdown-content">
       					<a href="studentForm.php">Inscription</a>
      					<a href="lendNewBook.php">Emprunt de livre</a>
-    					<a href="#">Dépot de livre </a>
+    					<a href="returnLendBook.php">Dépot de livre </a>
     				</div>
   			</div> 
   			<div class="dropdown">

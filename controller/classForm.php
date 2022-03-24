@@ -5,3 +5,9 @@
     }else{
         require("../view/unauthorizedAccessView.php");
     }
+
+    if(isset($_SESSION['connected']) && $_SESSION['connected']){
+
+    }else{
+        require("../view/unauthorizedAccessView.php");
+    }

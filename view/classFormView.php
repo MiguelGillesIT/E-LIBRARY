@@ -15,10 +15,11 @@
                     <div class = "divInput">
                         <h1>Enregistrer une classe</h1>
                     </div>
+                    <?php require('layout/message.php'); ?>
                     <?php if(isset($_SESSION['fail_message'])) : ?>
                         <div  class = "fail_message">
                             <div>
-                            <?=$_SESSION['fail_message']?>
+                            <?= htmlspecialchars($_SESSION['fail_message']) ?>
                             <?php unset($_SESSION['fail_message']);?>
                             </div>
                         </div>
@@ -26,7 +27,7 @@
                     <?php if(isset($_SESSION['success_message'])) : ?>
                         <div  class = "success_message">
                             <div>
-                            <?= $_SESSION['success_message'] ?>
+                            <?= htmlspecialchars($_SESSION['success_message']) ?>
                             <?php unset($_SESSION['success_message']);?>
                             </div>
                         </div>

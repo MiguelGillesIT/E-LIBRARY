@@ -12,10 +12,11 @@
     <?php require('layout/navbar.php'); ?>
     <div id = "container">
 
+        <?php require('layout/message.php'); ?>
         <?php if(isset($_SESSION['fail_message'])) : ?>
             <div  class = "fail_message">
                 <div>
-                    <?=$_SESSION['fail_message']?>
+                    <?= htmlspecialchars($_SESSION['fail_message'])?>
                 </div>
             </div>
         <?php endif; ?>
@@ -23,15 +24,15 @@
         <?php if(isset($_SESSION['success_message'])) : ?>
             <div  class = "success_message">
                 <div>
-                    <?= $_SESSION['success_message'] ?>
+                    <?= htmlspecialchars($_SESSION['success_message']) ?>
                 </div>
             </div>
         <?php endif; ?>
 
         <?php foreach($classes as $classe) : ?>
             <div class="codeLibelleCl">
-                <h2><?= $classe["codeCl"] ?></h2>
-                <h2><?= $classe["libelleCl"] ?></h2>
+                <h2><?= htmlspecialchars($classe["codeCl"]) ?></h2>
+                <h2><?= htmlspecialchars($classe["libelleCl"]) ?></h2>
             </div>
             <div class="table-wrapper">
 
@@ -52,20 +53,17 @@
                         <tbody>
                             <?php foreach( selectStudentByClassId($classe["codeCl"]) as $student ) : ?>
                                 <tr>
-                                    <td><?= $student["matricule"] ?></td>
-                                    <td><?= $student["nom"] ?></td>
-                                    <td><?= $student["prenoms"] ?></td>
-                                    <td><?= $student["dateNaissance"] ?></td>
-                                    <td><?= $student["lieu"] ?></td>
-                                    <td><?= $student["sexe"] ?></td>
-                                    <td><img src = "<?= $student["photo"] ?>" alt="<?= $student["nom"]." ".$student["prenoms"]." photo's" ?>" width="100" height="100"></td>
-                                    <td><a href = "<?= $student["CV"]?>"><?= $student["nom"]." ".$student["prenoms"]." CV's" ?></a></td>
+                                    <td><?= htmlspecialchars($student["matricule"]) ?></td>
+                                    <td><?= htmlspecialchars($student["nom"]) ?></td>
+                                    <td><?= htmlspecialchars($student["prenoms"]) ?></td>
+                                    <td><?= htmlspecialchars($student["dateNaissance"]) ?></td>
+                                    <td><?= htmlspecialchars($student["lieu"]) ?></td>
+                                    <td><?= htmlspecialchars($student["sexe"]) ?></td>
+                                    <td><img src = "<?= htmlspecialchars($student["photo"]) ?>" alt="<?= htmlspecialchars($student["nom"])." ".htmlspecialchars($student["prenoms"])." photo's" ?>" width="100" height="100"></td>
+                                    <td><a href = "<?= htmlspecialchars($student["CV"]) ?>"><?= htmlspecialchars($student["nom"])." ".htmlspecialchars($student["prenoms"])." CV's" ?></a></td>
                                     <td>
                                         <button>
-                                            <a href = "#">Modifier</a>
-                                        </button>
-                                        <button>
-                                            <a href = "updateDeleteStudent.php?action=delete&amp;studentId=<?=$student["matricule"]?>">Supprimer</a>
+                                            <a href = "updateDeleteStudent.php?action=delete&amp;studentId=<?= htmlspecialchars($student["matricule"])?>">Supprimer</a>
                                         </button>
                                     </td>
                                 </tr>

@@ -14,11 +14,11 @@
                 <div>
                     <h1>CONNEXION</h1>
                 </div>
-
+                <?php require('layout/message.php'); ?>
                 <?php if(isset($_SESSION['fail_message'])) : ?>
                         <div  class = "fail_message">
                             <div>
-                            <?= $_SESSION['fail_message']?>
+                            <?= htmlspecialchars($_SESSION['fail_message']) ?>
                             <?php unset($_SESSION['fail_message']);?>
                             </div>
                         </div>

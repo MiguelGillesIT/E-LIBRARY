@@ -36,6 +36,7 @@ h2{
 
 .fail_message{
     text-align: center;
+    margin : 20px;
 }
 
 .fail_message>div{
@@ -45,10 +46,12 @@ h2{
     padding: 6px;
     border-radius: 2px;
     font-weight: bold;
+
 }
 
 .success_message{
     text-align: center;
+    margin : 20px;
 }
 
 .success_message>div{color: white;

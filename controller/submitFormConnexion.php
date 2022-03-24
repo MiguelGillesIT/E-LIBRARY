@@ -23,14 +23,18 @@
             }else{
                 require("../model/model.php");
                 //Find the user and connect him to the application
-                $Users = retrieveUser($_POST['Login'],$_POST['Password']);
+                $login = htmlspecialchars($_POST['Login']);
+                $password = htmlspecialchars($_POST['Password']);
+                $Users = retrieveUser($login,$password);
 
                 if(!empty($Users)){
                     foreach ($Users as $user){
-                        if($user['e_mail'] === $_POST['Login']){
-                            if(hash_equals($user['password'] , crypt($_POST['Password'], $user['password']))){
+                        if($user['e_mail'] === $login){
+                            if(hash_equals($user['password'] , crypt($password, $user['password']))){
                                 $_SESSION['connected'] = true;
-                                $classes = selectClasse();
+                                $_SESSION['userID'] = $user['userID'];
+                                insertIntoBiblioLogs($_SESSION['userID'],getUserIpAddr(),"CONNEXION",date("Y/m/d"),date("h:i:sa"));
+                                $classes = selectClasse(); 
                                 require("../view/studentsView.php");
                             }else{
                                 $_SESSION['fail_message'] = "E-mail ou mot de passe incorrect";

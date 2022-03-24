@@ -1,7 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: KOUEVIDJIN MIGUEL
- * Date: 13/03/2022
- * Time: 10:48
- */
+session_start();
+if(isset($_SESSION['connected']) && $_SESSION['connected']){
+    require("../view/ExportFormView.php");
+}else{
+    require("../view/unauthorizedAccessView.php");
+}

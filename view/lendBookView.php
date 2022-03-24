@@ -6,23 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../public/images/LOGO_BIBLIO.png" type="image/icon type">
     <link rel = "stylesheet" href = "../public/css/navbar.css">
-    <link rel = "stylesheet" href = "../public/css/lends.css">
+    <link rel = "stylesheet" href = "../public/css/lendNewBook.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
 </head>
 <body>
     <?php require('layout/navbar.php'); ?>
     <div id = "container">
         <form action = "../controller/submitLendBook.php" method ="post">
             <div class = "divInput">
-                <h2>Preter un Livre</h2>
+                <h1>Preter un Livre</h1>
             </div>
+            <?php require('layout/message.php'); ?>
             <?php if(isset($_SESSION['fail_message'])) : ?>
                 <div  class = "fail_message">
                     <div>
-                        <?=$_SESSION['fail_message']?>
+                        <?= htmlspecialchars(['fail_message'])?>
                         <?php unset($_SESSION['fail_message']);?>
                     </div>
                 </div>
@@ -30,26 +31,25 @@
             <?php if(isset($_SESSION['success_message'])) : ?>
                 <div  class = "success_message">
                     <div>
-                        <?= $_SESSION['success_message'] ?>
+                        <?= htmlspecialchars(['success_message']) ?>
                         <?php  unset($_SESSION['success_message']);?>
                     </div>
                 </div>
             <?php endif; ?>
-
             <div class = "inputContainer divInput">
                 <div class = "divInputElement">
                     <label for = "etudiant">Etudiant</label><br>
                     <select class = "inputField custom-select" name="Etudiant" id="etudiant">
-                        <?php foreach($students  as $student) : ?>
-                            <option value = <?= $student['matricule'] ?>> <?= $student['nom']." ".$student['prenoms'] ?> </option>
+                        <?php foreach(selectStudent()  as $student) : ?>
+                            <option value = <?= htmlspecialchars($student['matricule']) ?>> <?= htmlspecialchars($student['nom'])." ".htmlspecialchars($student['prenoms']) ?> </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
                 <div class = "divInputElement">
-                    <label for = "book">classe</label><br>
+                    <label for = "book">Livre</label><br>
                     <select class = "inputField custom-select" name="Book" id="book">
-                        <?php foreach($books  as $book): ?>
-                            <option value = <?= $book['codeL'] ?>> <?= $book['titreL'] ?> </option>
+                        <?php foreach(selectBook()  as $book): ?>
+                            <option value = <?= htmlspecialchars($book['codeL']) ?>> <?= htmlspecialchars($book['titreL']) ?> </option>
                         <?php endforeach; ?>
                     </select>
                 </div>
@@ -60,9 +60,5 @@
 
         </form>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
 </body>
 </html>

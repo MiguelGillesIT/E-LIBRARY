@@ -1,53 +1,62 @@
 <?php
     session_start();
-    //Verify if global variables of form have been created
-    if(!isset($_POST['FileType']) || !isset($_FILES['ImportedFile'])){
-        $_SESSION['fail_message'] = "CHAMP MANQUANT, VEUILLEZ LE REMPLIR";
-        require("../view/importStudentFormView.php");
-        unset($_SESSION['fail_message']);
-
-    }else{
-        //Verify if global variables of form are empty
-        if(empty($_POST['FileType']) ||  empty($_FILES['ImportedFile'])){
-            $_SESSION['fail_message'] = "CHAMP VIDE, VEUILLEZ LE REMPLIR";
+    if(isset($_SESSION['connected']) && $_SESSION['connected']){
+        //Verify if global variables of form have been created
+        if(!isset($_POST['FileType']) || !isset($_FILES['ImportedFile'])){
+            $_SESSION['fail_message'] = "CHAMP MANQUANT, VEUILLEZ LE REMPLIR";
             require("../view/importStudentFormView.php");
             unset($_SESSION['fail_message']);
 
         }else{
-            //If not insert classe into database
-            if( !($_FILES['ImportedFile']['error'] == 0)){
-                $_SESSION['fail_message'] = "ERREUR CHARGEMENT DU FICHIER";
+            //Verify if global variables of form are empty
+            if(empty($_POST['FileType']) ||  empty($_FILES['ImportedFile'])){
+                $_SESSION['fail_message'] = "CHAMP VIDE, VEUILLEZ LE REMPLIR";
                 require("../view/importStudentFormView.php");
                 unset($_SESSION['fail_message']);
-            }else{
-                $fileInfo = pathinfo($_FILES['ImportedFile']['name']);
-                $fileExtension = $fileInfo['extension'];
-                $allowedFileExtensions = ['cvs', 'json', 'xlsx'];
 
-                //Verify if extensions are not right
-                if (!(in_array($fileExtension, $allowedFileExtensions)) ){
-                    $_SESSION['fail_message'] = "EXTENSION DE FICHIERS INVALIDES";
+            }else{
+                //If not insert classe into database
+                if( !($_FILES['ImportedFile']['error'] == 0)){
+                    $_SESSION['fail_message'] = "ERREUR CHARGEMENT DU FICHIER";
                     require("../view/importStudentFormView.php");
                     unset($_SESSION['fail_message']);
                 }else{
-                    require("../model/model.php");
-                    if($_POST['FileType'] === "excel"){
+                    $fileInfo = pathinfo($_FILES['ImportedFile']['name']);
+                    $fileExtension = $fileInfo['extension'];
+                    $allowedFileExtensions = ['cvs', 'json', 'xlsx'];
 
-                    }elseif($_POST['FileType'] === "csv"){
-                        readStudentCvsFile($_FILES['ImportedFile']['tmp_name']);
-                        $_SESSION['success_message'] = "IMPORTATION REUSSIE";
+                    //Verify if extensions are not right
+                    if (!(in_array($fileExtension, $allowedFileExtensions)) ){
+                        $_SESSION['fail_message'] = "EXTENSION DE FICHIERS INVALIDES";
                         require("../view/importStudentFormView.php");
-                        unset($_SESSION['success_message']);
+                        unset($_SESSION['fail_message']);
+                    }else{
+                        require("../model/model.php");
+                        $fileType = htmlspecialchars($_POST['FileType']);
 
-                    }elseif($_POST['FileType'] === "json"){
-                        readStudentJsonFile($_FILES['ImportedFile']['tmp_name']);
-                        $_SESSION['success_message'] = "IMPORTATION REUSSIE";
-                        require("../view/importStudentFormView.php");
-                        unset($_SESSION['success_message']);
-                }   }
+                        if($fileType === "excel"){
+
+                        }elseif($fileType === "csv"){
+                            insertIntoBiblioLogs($_SESSION['userID'],getUserIpAddr(),"IMPORTATION D'ETUDIANTS",date("Y/m/d"),date("h:i:sa"));
+                            readStudentCvsFile($_FILES['ImportedFile']['tmp_name']);
+                            $_SESSION['success_message'] = "IMPORTATION REUSSIE";
+                            require("../view/importStudentFormView.php");
+                            unset($_SESSION['success_message']);
+
+                        }elseif($fileType === "json"){
+                            insertIntoBiblioLogs($_SESSION['userID'],getUserIpAddr(),"IMPORTATION D'ETUDIANTS",date("Y/m/d"),date("h:i:sa"));
+                            readStudentJsonFile($_FILES['ImportedFile']['tmp_name']);
+                            $_SESSION['success_message'] = "IMPORTATION REUSSIE";
+                            require("../view/importStudentFormView.php");
+                            unset($_SESSION['success_message']);
+                        }   }
+                }
             }
         }
+    }else{
+        require("../view/unauthorizedAccessView.php");
     }
+
 
     // function to read Students JSON file
     function readStudentJsonFile($filePath){
@@ -57,7 +66,7 @@
             foreach($students as $student){
                 $Student = retrieveStudentById($student->matricule);
                 if(empty($Student)){
-                    insertIntoStudent($student->matricule,$student->nom,$student->prenoms,$student->dateNaissance,$student->lieu,$student->sexe,$student->photo,$student->codeCl,$student->CV );
+                    insertIntoStudent(htmlspecialchars($student->matricule),htmlspecialchars($student->nom),htmlspecialchars($student->prenoms),htmlspecialchars($student->dateNaissance),htmlspecialchars($student->lieu),htmlspecialchars($student->sexe),htmlspecialchars($student->photo),htmlspecialchars($student->codeCl),htmlspecialchars($student->CV ));
                 }
             } 
         }
@@ -76,7 +85,7 @@
         while (($student = fgetcsv($loadedFile, 0, ",")) !== FALSE) {
             $Student = retrieveStudentById($student[0]);
             if(empty($Student)){
-                insertIntoStudent($student[0],$student[1],$student[2],$student[3],$student[4],$student[5],$student[6],$student[7],$student[8]);
+                insertIntoStudent(htmlspecialchars($student[0]),htmlspecialchars($student[1]),htmlspecialchars($student[2]),htmlspecialchars($student[3]),htmlspecialchars($student[4]),htmlspecialchars($student[5]),htmlspecialchars($student[6]),htmlspecialchars($student[7]),htmlspecialchars($student[8]));
             }
         }
     }

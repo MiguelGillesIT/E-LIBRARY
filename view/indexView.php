@@ -6,7 +6,7 @@
 
     <title>BL | ACCUEIL</title>
     <link rel="shortcut icon" href="public/images/LOGO_BIBLIO.png">
-    <link rel="stylesheet" id="css-main" href="public/css/index.css">
+    <link rel="stylesheet" id="css-main" href="<?= htmlspecialchars($cssPath) ?>">
 
 
 </head>
@@ -101,9 +101,9 @@
                         <div class="col-md-5">
                             <div class="block block-rounded">
                                 <div class="block-content">
-                                    <h3 class="font-w700 text-center"> <?php echo $book['titreL'];?> </h3>
-                                    <h5 class="font-w700 text-center"> <?php echo $book['auteurL'];?></h5>
-                                    <h5 class="font-w700 text-center"> <?php echo $book['genreL'];?></h5>
+                                    <h3 class="font-w700 text-center"> <?= htmlspecialchars(['titreL']) ?> </h3>
+                                    <h5 class="font-w700 text-center"> <?= htmlspecialchars(['auteurL'])?></h5>
+                                    <h5 class="font-w700 text-center"> <?= htmlspecialchars(['genreL']) ?></h5>
                                 </div>
                             </div>
                         </div>

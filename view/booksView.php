@@ -11,10 +11,11 @@
 <body>
 <?php require('layout/navbar.php'); ?>
 <div id = "container">
+    <?php require('layout/message.php'); ?>
     <?php if(isset($_SESSION['fail_message'])) : ?>
         <div  class = "fail_message">
             <div>
-                <?=$_SESSION['fail_message']?>
+                <?= htmlspecialchars(['fail_message']) ?>
                 <?php unset($_SESSION['fail_message']);?>
             </div>
         </div>
@@ -22,7 +23,7 @@
     <?php if(isset($_SESSION['success_message'])) : ?>
         <div  class = "success_message">
             <div>
-                <?= $_SESSION['success_message'] ?>
+                <?= htmlspecialchars($_SESSION['success_message']) ?>
                 <?php unset($_SESSION['success_message']);?>
             </div>
         </div>
@@ -42,15 +43,12 @@
                 <tbody>
                 <?php foreach( selectBookByAuthor($author["auteurL"]) as $book ) : ?>
                     <tr>
-                        <td><?= $book["codeL"] ?></td>
-                        <td><?= $book["titreL"] ?></td>
-                        <td><?= $book["genreL"] ?></td>
+                        <td><?= htmlspecialchars($book["codeL"]) ?></td>
+                        <td><?= htmlspecialchars($book["titreL"]) ?></td>
+                        <td><?= htmlspecialchars($book["genreL"]) ?></td>
                         <td>
                             <button>
-                                <a href = "#">Modifier</a>
-                            </button>
-                            <button>
-                                <a href = "updateDeleteBook.php?action=delete&amp;bookId=<?=$book["codeL"] ?>">Supprimer</a>
+                                <a href = "updateDeleteBook.php?action=delete&amp;bookId=<?= htmlspecialchars($book["codeL"]) ?>">Supprimer</a>
                             </button>
                         </td>
                     </tr>

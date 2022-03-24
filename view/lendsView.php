@@ -20,18 +20,16 @@
                             <th>Livre</th>
                             <th>Date de Sortie</th>
                             <th>Date de Retour</th>
-                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php if(!empty($lends)) :?>
                             <?php foreach( $lends as $lend ) :?>
                                 <tr>
-                                    <td><?= retrieveStudentById($lend["matricule"])[0]["matricule"] ?></td>
-                                    <td><?= retrieveBookById($lend["codeL"])[0]["codeL"] ?></td>
-                                    <td><?= $lend["dateSortie"] ?></td>
-                                    <td><?= $lend["dateRetour"] ?></td>
-
+                                    <td><?= htmlspecialchars(retrieveStudentById($lend["matricule"])[0]["nom"] ." ".retrieveStudentById($lend["matricule"])[0]["prenoms"]) ?></td>
+                                    <td><?= htmlspecialchars(retrieveBookById($lend["codeL"])[0]["titreL"]) ?></td>
+                                    <td><?= htmlspecialchars($lend["dateSortie"]) ?></td>
+                                    <td><?= htmlspecialchars($lend["dateRetour"]) ?></td>
                                 </tr>
                             <?php  endforeach; ?>
                         <?php  endif; ?>

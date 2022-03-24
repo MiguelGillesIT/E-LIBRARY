@@ -15,10 +15,11 @@
                     <div class = "divInput">
                         <h1>Enregistrer un étudiant</h1>
                     </div>
+                    <?php require('layout/message.php'); ?>
                     <?php if(isset($_SESSION['fail_message'])) : ?>
                         <div  class = "fail_message">
                             <div>
-                            <?=$_SESSION['fail_message']?>
+                            <?= htmlspecialchars($_SESSION['fail_message']) ?>
                             <?php unset($_SESSION['fail_message']);?>
                             </div>
                         </div>
@@ -26,7 +27,7 @@
                     <?php if(isset($_SESSION['success_message'])) : ?>
                         <div  class = "success_message">
                             <div>
-                                <?= $_SESSION['success_message'] ?>
+                                <?= htmlspecialchars($_SESSION['success_message']) ?>
                                 <?php  unset($_SESSION['success_message']);?>
                             </div>
                         </div>
@@ -79,7 +80,7 @@
                             <select class = "inputField" name="ClasseEtudiant" id="classeEtudiant">
                                 <?php require("../model/model.php");?>
                                 <?php foreach(selectClasse()  as $classe): ?>
-                                    <option value = <?= $classe['libelleCl'] ?>> <?= $classe['libelleCl'] ?> </option>
+                                    <option value = "<?= htmlspecialchars($classe['libelleCl']) ?>" > <?= htmlspecialchars($classe['libelleCl']) ?> </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

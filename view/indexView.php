@@ -101,9 +101,9 @@
                         <div class="col-md-5">
                             <div class="block block-rounded">
                                 <div class="block-content">
-                                    <h3 class="font-w700 text-center"> <?= htmlspecialchars(['titreL']) ?> </h3>
-                                    <h5 class="font-w700 text-center"> <?= htmlspecialchars(['auteurL'])?></h5>
-                                    <h5 class="font-w700 text-center"> <?= htmlspecialchars(['genreL']) ?></h5>
+                                    <h3 class="font-w700 text-center"> <?= htmlspecialchars($book['titreL']) ?> </h3>
+                                    <h5 class="font-w700 text-center"> <?= htmlspecialchars($book['auteurL'])?></h5>
+                                    <h5 class="font-w700 text-center"> <?= htmlspecialchars($book['genreL']) ?></h5>
                                 </div>
                             </div>
                         </div>

@@ -10,9 +10,9 @@ It helps by registring students users,student's classes, books, and differents l
 git clone https://github.com/MiguelGillesIT/E-LIBRARY.git
 ```
 
-* Create a database name **biblio** and import the **biblio.sql** in root directory.
-*  In this  **userbiblio** table create a new user by adding differents fields. The password must be hashed with Bcrypt algorithm. You can use this site to create the hash  [Bcrypt.online](https://bcrypt.online/). The cost factor used must be 10. 
-*  In  model/model file change **username** and **password** of database for configuration. 
+* Create a database named **biblio** and import the **biblio.sql** in root directory.
+*  In   **userbiblio** table create a new user by filling manually the differents fields. The password must be hashed with Bcrypt algorithm. You can use this site to create the hash  [Bcrypt.online](https://bcrypt.online/). The cost factor used must be 10. 
+*  In the model/model file change **username** and **password** of database for configuration. 
 * Add manually new books in **livre** table.
 
 

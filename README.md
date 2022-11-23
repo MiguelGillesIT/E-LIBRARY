@@ -1,4 +1,7 @@
 # E-LIBRARY
+<center>
+<img src="/public/images/LOGO_BIBLIO.png">
+</center>
 
 ## DESCRIPTION
 E-LIBRARY is a project written in PHP, HTML AND CSS to manage a school library. It's a little project which will help librairian to be more at ease for books management.
